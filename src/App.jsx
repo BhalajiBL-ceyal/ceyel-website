@@ -1,5 +1,7 @@
 import React from "react";
 import { motion } from "framer-motion";
+import logo from "/assets/logo.png";
+import { Link, animateScroll as scroll } from "react-scroll";
 import {
   FaCogs,
   FaChartLine,
@@ -12,48 +14,47 @@ import {
   FaCloud,
 } from "react-icons/fa";
 
-
 function App() {
   const features = [
     {
       icon: <FaCogs className="text-indigo-600 text-4xl" />,
       title: "Process Mining",
-      desc: "Real-time process visualization with bottleneck detection, pain point analysis, and conformance checking.",
+      desc: "Real-time process visualization, bottleneck detection, and conformance checking.",
     },
     {
       icon: <FaChartLine className="text-green-600 text-4xl" />,
       title: "Predictive Analytics",
-      desc: "AI-powered predictions for cost, time, risks, supply chain disruptions, and future outcomes.",
+      desc: "AI predictions for cost, time, risks, and future outcomes.",
     },
     {
       icon: <FaRobot className="text-blue-600 text-4xl" />,
       title: "AI & Automation",
-      desc: "Anomaly detection, predictive maintenance, autonomous execution, and smart recommendations.",
+      desc: "Anomaly detection, predictive maintenance, autonomous execution, and recommendations.",
     },
     {
       icon: <FaLeaf className="text-emerald-600 text-4xl" />,
       title: "Sustainability",
-      desc: "Carbon footprint monitoring, energy optimization, waste stream reduction, and carbon credit marketplace.",
+      desc: "Carbon footprint monitoring, energy optimization, waste reduction, and carbon credit marketplace.",
     },
     {
       icon: <FaUsers className="text-pink-600 text-4xl" />,
       title: "Gamification & Collaboration",
-      desc: "Leaderboards, team challenges, collaborative robotics integration, and employee skill gap analysis.",
+      desc: "Leaderboards, team challenges, collaborative robotics integration, and skill gap analysis.",
     },
     {
       icon: <FaDatabase className="text-yellow-600 text-4xl" />,
       title: "Blockchain Integration",
-      desc: "Immutable event log storage, smart contracts, DAOs for governance, and blockchain microtransactions.",
+      desc: "Immutable event logs, smart contracts, DAOs for governance, and blockchain microtransactions.",
     },
     {
       icon: <FaMobileAlt className="text-orange-600 text-4xl" />,
       title: "Mobile & AR/VR",
-      desc: "Mobile chatbot support, AR-based visualization, and VR immersive training for employees.",
+      desc: "Mobile chatbot support, AR visualization, and VR immersive training.",
     },
     {
       icon: <FaLock className="text-red-600 text-4xl" />,
       title: "Security & Privacy",
-      desc: "Zero Trust model, GDPR compliance, federated learning, and advanced role-based access control.",
+      desc: "Zero Trust model, GDPR compliance, federated learning, role-based access control.",
     },
     {
       icon: <FaCloud className="text-purple-600 text-4xl" />,
@@ -63,28 +64,42 @@ function App() {
   ];
 
   return (
-    <div className="font-sans bg-gray-50 text-gray-900">
+    <div className="font-sans relative overflow-x-hidden">
+      {/* Floating blobs */}
+      <motion.div
+        className="absolute top-20 left-10 w-40 h-40 bg-purple-400 rounded-full mix-blend-multiply filter blur-3xl opacity-50"
+        animate={{ y: [0, 20, 0] }}
+        transition={{ duration: 6, repeat: Infinity }}
+      />
+      <motion.div
+        className="absolute bottom-10 right-20 w-60 h-60 bg-indigo-400 rounded-full mix-blend-multiply filter blur-3xl opacity-40"
+        animate={{ y: [0, -25, 0] }}
+        transition={{ duration: 8, repeat: Infinity }}
+      />
+
       {/* Header */}
       <header className="sticky top-0 z-50 bg-white shadow-md p-6 flex justify-between items-center">
-        <motion.h1
-          initial={{ opacity: 0, y: -30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1 }}
-          className="text-4xl font-extrabold text-indigo-700 tracking-wide"
-        >
-          CEYEL
-        </motion.h1>
-        <nav className="space-x-8 font-medium">
-          <a href="#about" className="hover:text-indigo-600">About</a>
-          <a href="#features" className="hover:text-indigo-600">Features</a>
-          <a href="#subscriptions" className="hover:text-indigo-600">Subscriptions</a>
-          <a href="#roadmap" className="hover:text-indigo-600">Roadmap</a>
-          <a href="#contact" className="hover:text-indigo-600">Contact</a>
-        </nav>
-      </header>
+  <motion.div
+    initial={{ opacity: 0, y: -30 }}
+    animate={{ opacity: 1, y: 0 }}
+    transition={{ duration: 1 }}
+    className="flex items-center space-x-3"
+  >
+    <img src={logo} alt="Ceyel Logo" className="h-10 w-auto" />
+      </motion.div>
+
+  <nav className="space-x-8 font-medium">
+    <a href="#about" className="hover:text-indigo-600">About</a>
+    <a href="#features" className="hover:text-indigo-600">Features</a>
+    <a href="#subscriptions" className="hover:text-indigo-600">Subscriptions</a>
+    <a href="#roadmap" className="hover:text-indigo-600">Roadmap</a>
+    <a href="#contact" className="hover:text-indigo-600">Contact</a>
+  </nav>
+</header>
+
 
       {/* Hero Section */}
-      <section className="h-screen bg-gradient-to-r from-indigo-600 to-purple-600 text-white flex flex-col items-center justify-center text-center px-6">
+      <section className="h-screen bg-gradient-to-r from-indigo-600 to-purple-600 text-white flex flex-col items-center justify-center text-center px-6 relative z-10">
         <motion.h2
           initial={{ opacity: 0, scale: 0.8 }}
           animate={{ opacity: 1, scale: 1 }}
@@ -99,7 +114,7 @@ function App() {
           transition={{ delay: 0.5, duration: 1 }}
           className="text-lg md:text-2xl max-w-3xl mb-8"
         >
-          Ceyel is the future of process mining—empowering manufacturing, logistics, and healthcare with intelligent, sustainable, and collaborative workflows.
+          Ceyel empowers manufacturing, logistics, and healthcare with intelligent, sustainable, and collaborative workflows.
         </motion.p>
         <motion.a
           href="#features"
@@ -150,6 +165,14 @@ function App() {
             </motion.div>
           ))}
         </div>
+        {/* Workflow GIF placeholder */}
+        <div className="flex justify-center mt-12">
+          <img
+            src="/workflow-placeholder.gif"
+            alt="Ceyel Workflow"
+            className="rounded-xl shadow-xl w-full max-w-4xl"
+          />
+        </div>
       </section>
 
       {/* Subscriptions Section */}
@@ -178,9 +201,33 @@ function App() {
             </motion.div>
           ))}
         </div>
+        {/* Newsletter form */}
+        <div className="mt-12 text-center">
+          <h3 className="text-2xl font-bold mb-4">Subscribe to our Newsletter</h3>
+          <form 
+            name="newsletter" 
+            method="POST" 
+            data-netlify="true"
+            className="flex flex-col md:flex-row justify-center gap-4 mt-4"
+          >
+            <input 
+              type="email" 
+              name="email" 
+              placeholder="Your Email" 
+              required 
+              className="p-3 rounded-lg border w-full md:w-1/3"
+            />
+            <button 
+              type="submit" 
+              className="px-6 py-3 bg-indigo-600 text-white rounded-full hover:bg-indigo-700"
+            >
+              Subscribe
+            </button>
+          </form>
+        </div>
       </section>
 
-      {/* Roadmap */}
+      {/* Roadmap Section */}
       <section id="roadmap" className="py-20 bg-gray-100 px-8 md:px-20">
         <motion.h2 className="text-4xl font-bold text-center mb-16">
           Our Roadmap
@@ -201,23 +248,23 @@ function App() {
           <div className="bg-white p-8 rounded-2xl shadow-md">
             <h3 className="font-bold text-xl">2027 - Global Vision</h3>
             <p className="text-gray-600 mt-2">
-              Quantum optimization, autonomous process execution, and integration with international markets.
+              Quantum optimization, autonomous process execution, and international market expansion.
             </p>
           </div>
         </div>
       </section>
 
-      {/* Contact */}
+      {/* Contact Section */}
       <section id="contact" className="py-20 bg-white px-8 md:px-20 text-center">
         <motion.h2 className="text-4xl font-bold mb-10">Contact Us</motion.h2>
         <p className="mb-6 text-lg">
           Ready to transform your business? Reach out to the Ceyel team today!
         </p>
         <a
-          href="mailto:bhalaji0bl@gmail.com"
+          href="mailto:info@ceyel.com"
           className="px-8 py-4 bg-indigo-600 text-white rounded-full shadow-lg"
         >
-          bhalaji0bl@gmail.com
+          info@ceyel.com
         </a>
       </section>
 
